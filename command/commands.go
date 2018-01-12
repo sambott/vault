@@ -38,6 +38,7 @@ import (
 	credAws "github.com/hashicorp/vault/builtin/credential/aws"
 	credCert "github.com/hashicorp/vault/builtin/credential/cert"
 	credGitHub "github.com/hashicorp/vault/builtin/credential/github"
+	credKerberos "github.com/hashicorp/vault/builtin/credential/kerberos"
 	credLdap "github.com/hashicorp/vault/builtin/credential/ldap"
 	credOkta "github.com/hashicorp/vault/builtin/credential/okta"
 	credRadius "github.com/hashicorp/vault/builtin/credential/radius"
@@ -110,11 +111,12 @@ func init() {
 	}
 
 	loginHandlers := map[string]LoginHandler{
-		"aws":    &credAws.CLIHandler{},
-		"cert":   &credCert.CLIHandler{},
-		"github": &credGitHub.CLIHandler{},
-		"ldap":   &credLdap.CLIHandler{},
-		"okta":   &credOkta.CLIHandler{},
+		"aws":      &credAws.CLIHandler{},
+		"cert":     &credCert.CLIHandler{},
+		"github":   &credGitHub.CLIHandler{},
+		"kerberos": &credKerberos.CLIHandler{},
+		"ldap":     &credLdap.CLIHandler{},
+		"okta":     &credOkta.CLIHandler{},
 		"radius": &credUserpass.CLIHandler{
 			DefaultMount: "radius",
 		},
@@ -418,6 +420,7 @@ func init() {
 					"cert":       credCert.Factory,
 					"gcp":        credGcp.Factory,
 					"github":     credGitHub.Factory,
+					"kerberos":   credKerberos.Factory,
 					"kubernetes": credKube.Factory,
 					"ldap":       credLdap.Factory,
 					"okta":       credOkta.Factory,
